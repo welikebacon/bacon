@@ -3,14 +3,14 @@ PIDFILE=./db/data/mongod.lock
 run: startdb
 	@`npm bin`/coffee server.coffee
 
-tests:
-	`npm bin`/mocha --recursive --compilers coffee:coffee-script
+tests: startdb
+	@`npm bin`/mocha --recursive --compilers coffee:coffee-script
 
-fixture:
-	`npm bin`/coffee db/fixtures/load_fixtures.coffee
+fixture: startdb
+	@`npm bin`/coffee db/fixtures/load_fixtures.coffee
 
 clean: stopdb
-	rm -fr ./db/data/* 
+	@rm -fr ./db/data/* 
 
 startdb:
 	@if [ -f ${PIDFILE} ]; then \

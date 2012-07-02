@@ -6,7 +6,7 @@ MongoStore = require('connect-mongo')(express)
 everyauth = require 'everyauth'
 config = require './config'
 db = require './models/db'
-user = require './models/user'
+User = require './models/user'
 
 
 
@@ -27,7 +27,7 @@ everyauth.twitter.configure
             protocol: "twitter"
             userid: twitterUserData.id  
         suggestions = username: twitterUserData.name
-        user.findOrCreate authMethod, suggestions, promise
+        User.findOrCreate authMethod, suggestions, promise
         promise
     redirectPath: '/'
 
