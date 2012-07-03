@@ -23,7 +23,8 @@ User = model.Model
 
         findOrCreate: (credentials, suggestion, promise)->
             if credentials.protocol? and credentials.value?
-                @findOne credentials, (err, user)->
+                filter = credentials: credentials
+                @findOne filter, (err, user)->
                     if err?
                         promise.fail "failure"
                     else

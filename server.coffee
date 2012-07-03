@@ -14,7 +14,7 @@ everyauth.debug = true
 everyauth.everymodule.configure
     userPkey: '_id'
     findUserById: (id, callback)->
-        callback null, {id:id, username:"Smith"}
+        User.findById id, callback
 
 everyauth.twitter.configure
     consumerKey: config.everyauth.twitter.consumerKey

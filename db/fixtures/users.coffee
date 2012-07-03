@@ -1,9 +1,9 @@
 ObjectId = require('pow-mongodb-fixtures').createObjectId
 
-user1 = 
-	_id:            ObjectId('4ed2b809d7446b9a0e000014')
-	username: 	    'FrancisBacon'
-	creation_date:  new Date 2012, 6, 30
+poulejapon = 
+	username: "poulejapon"
+	creationDate: new Date 2012, 7, 3
+	credentials : [ { "protocol" : "twitter", "value" : 14595797 } ], "_id" : ObjectId("4ff3781d9ce459b514000001")
 
-exports.users = [ user1 ]
+exports.users = [ poulejapon ]
 
