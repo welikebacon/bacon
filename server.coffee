@@ -7,14 +7,14 @@ everyauth = require 'everyauth'
 config = require './config'
 db = require './models/db'
 User = require './models/user'
-
-
+async = require 'async'
 
 everyauth.debug = true
 
-everyauth.everymodule.findUserById (id, callback)->
-    console.log "Findbyid", id
-    callback null, {id:id, username:"Smith"}
+everyauth.everymodule.configure
+    userPkey: '_id'
+    findUserById: (id, callback)->
+        callback null, {id:id, username:"Smith"}
 
 everyauth.twitter.configure
     consumerKey: config.everyauth.twitter.consumerKey
@@ -25,7 +25,7 @@ everyauth.twitter.configure
         # at the moment. Backend can be adapted easily though.
         authMethod =
             protocol: "twitter"
-            userid: twitterUserData.id  
+            value: twitterUserData.id
         suggestions = username: twitterUserData.name
         User.findOrCreate authMethod, suggestions, promise
         promise
@@ -47,7 +47,6 @@ app.configure ->
     app.set('views', __dirname + '/views')
     app.set('view engine', 'jade')
 
-
 app.configure 'development', ->
     errorHandler = express.errorHandler
         dumpExceptions: true
@@ -66,12 +65,14 @@ app.get '/', (req, res)->
 # Routes
 require('./apps/authentication/routes')(app)
 
-db.setup ->
-    # Start the server
+runServer = (callback=(->))->
     app.listen 3000, ->
         port = app.address().port
         mode = app.settings.env
         console.log "Express server listening on port #{port} in #{mode} mode"
+    callback()
+
+async.series [db.setup, ( (args...)-> User.ensureIndex args...), runServer]
 
 
 module.exports = app

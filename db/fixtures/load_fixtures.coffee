@@ -7,4 +7,4 @@ fixtures_client = fixtures.connect dbconfig.db,
 	host: dbconfig.host
 	port: dbconfig.port
 
-fixtures_client.load require('./users'), -> console.log "loaded"
+fixtures_client.load require('./users'), -> console.log "... Done"

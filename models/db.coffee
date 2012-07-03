@@ -6,6 +6,7 @@ db = new mongodb.Db(config.db, server, {})
 module.client = null
 
 setup = (callback)->
+    console.log "Setup DB"
     if not module.client?
         db.open (error, client)->
           if error
