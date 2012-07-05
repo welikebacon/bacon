@@ -41,8 +41,10 @@ User = model.Model
                                     promise.fail "Internal error"
                                 else
                                     user._id = newUser._id
+                                    user.id = user._id
                                 promise.fulfill user
                         else
+                            user.id = user._id
                             promise.fulfill user
             else
                 console.error "protocol AND value should be defined. #{authMethod} is not a valid login"
