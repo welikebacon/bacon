@@ -8,4 +8,7 @@ routes = (app) ->
     app.post '/sessions', (req, res) ->
         res.redirect '/login'
 
+    app.get '/logout', (req,res)->
+    	res.redirect 'back'
+
 module.exports = routes

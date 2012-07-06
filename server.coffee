@@ -12,11 +12,10 @@ readymade = require 'readymade'
 
 everyauth.debug = true
 
-
-#everyauth.everymodule.userPkey '_id'
 everyauth.everymodule.findUserById (id, callback)->
         User.findById id, callback
 
+#twitter definition
 everyauth.twitter.redirectPath '/'
 everyauth.twitter.consumerKey config.everyauth.twitter.consumerKey
 everyauth.twitter.consumerSecret config.everyauth.twitter.consumerSecret
@@ -50,8 +49,9 @@ app.configure ->
     app.use express.session { secret: config.secret, store: mongoStore }
     app.use everyauth.middleware()
     app.use app.router
-    app.set('views', __dirname + '/views')
-    app.set('view engine', 'jade')
+    app.set 'views', __dirname + '/views'
+    app.set 'view engine', 'jade'
+    app.set 'view options', layout: false
 
 app.configure 'development', ->
     errorHandler = express.errorHandler
