@@ -48,8 +48,6 @@ app.configure ->
     app.use express.cookieParser()
     app.use express.session { secret: config.secret, store: mongoStore }
     app.use everyauth.middleware()
-    app.use app.router
-    app.set 'views', __dirname + '/views'
     app.set 'view engine', 'jade'
     app.set 'view options', layout: false
 
@@ -62,14 +60,14 @@ app.configure 'development', ->
 app.configure 'production', ->
     app.use express.errorHandler()
 
-app.get '/', (req, res)->
-  res.render 'index',
-    title: "Index"
-    user: req.user
+app.use app.router
 
-
-# Routes
+# adding api routes
+require('./apps/api/routes')(app)
+# adding authentication routes
 require('./apps/authentication/routes')(app)
+# adding front routes
+require('./apps/front/routes')(app)
 
 runServer = (callback=(->))->
     app.listen 3000, ->

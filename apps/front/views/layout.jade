@@ -18,8 +18,12 @@ html(lang="en")
           div.nav-collapse
             block menu
               ul.nav
-                li.active
-                  a(href="/") Something?
+                li
+                  a(href="/") Home
+                li
+                  a(href="/create/") Create new Dataset
+                li
+                  a(href="/") About
               - if (!user)
                 ul.nav.pull-right
                   li(class="divider-vertical")
