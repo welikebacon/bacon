@@ -44,6 +44,7 @@ app.configure ->
     #app.use express.static (__dirname + "/public")
     app.use readymade.middleware
         root: 'public'
+        makefile: './readymade.Makefile'
     app.use express.favicon()
     app.use express.cookieParser()
     app.use express.session { secret: config.secret, store: mongoStore }

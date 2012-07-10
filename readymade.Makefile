@@ -1,0 +1,6 @@
+LESSPATH=public/thirdparty/bootstrap/less
+
+${build_path}/public/thirdparty/bootstrap/less/bootstrap.css: ${LESSPATH}/accordion.less ${LESSPATH}/alerts.less ${LESSPATH}/bootstrap.less ${LESSPATH}/breadcrumbs.less ${LESSPATH}/button-groups.less ${LESSPATH}/buttons.less ${LESSPATH}/carousel.less ${LESSPATH}/close.less ${LESSPATH}/code.less ${LESSPATH}/component-animations.less ${LESSPATH}/dropdowns.less ${LESSPATH}/forms.less ${LESSPATH}/grid.less ${LESSPATH}/hero-unit.less ${LESSPATH}/labels-badges.less ${LESSPATH}/layouts.less ${LESSPATH}/mixins.less ${LESSPATH}/modals.less ${LESSPATH}/navbar.less ${LESSPATH}/navs.less ${LESSPATH}/pager.less ${LESSPATH}/pagination.less ${LESSPATH}/popovers.less ${LESSPATH}/progress-bars.less ${LESSPATH}/reset.less ${LESSPATH}/responsive-1200px-min.less ${LESSPATH}/responsive-767px-max.less ${LESSPATH}/responsive-768px-979px.less ${LESSPATH}/responsive-navbar.less ${LESSPATH}/responsive-utilities.less ${LESSPATH}/responsive.less ${LESSPATH}/scaffolding.less ${LESSPATH}/sprites.less ${LESSPATH}/tables.less ${LESSPATH}/thumbnails.less ${LESSPATH}/tooltip.less ${LESSPATH}/type.less ${LESSPATH}/utilities.less ${LESSPATH}/variables.less ${LESSPATH}/wells.less 
+	mkdir -p `dirname $@`
+	lessc ${LESSPATH}/bootstrap.less $@
+
